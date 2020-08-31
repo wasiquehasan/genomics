@@ -1,0 +1,6 @@
+---
+title: "index.Rmd"
+author: "Wasique Hasan"
+date: "8/31/2020"
+output: html_document
+---
