@@ -1,0 +1,12 @@
+---
+title: "paper.Rmd"
+author: "Wasique Hasan"
+date: "8/31/2020"
+output: html_document
+bibliography: references.bib
+---
+
+Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
+
+# REFERENCES                                                                        
+

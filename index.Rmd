@@ -1,6 +1,15 @@
 ---
-title: "index.Rmd"
+title: "New Site"
 author: "Wasique Hasan"
 date: "8/31/2020"
 output: html_document
+bibliography: references.bib
+
 ---
+Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
+###stuff in lab 1\
+
+[Lab 1](https://github.com/wasiquehasan/genomics/blob/master/lab1_wasiquehasan.R)
+![](https://htmlcolorcodes.com/assets/images/html-color-codes-color-palette-generators-7a5b8241.jpg)
+
+# REFERENCES
