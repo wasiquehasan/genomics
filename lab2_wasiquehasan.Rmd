@@ -3,7 +3,7 @@ title: "Lab 2"
 author: "Wasique Hasan"
 date: "8/31/2020"
 output: html_document
-bibliography: references.bib
+bibliography: data/references.bib
 ---
 library(knitr)
 library(markdown)

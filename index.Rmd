@@ -1,15 +1,21 @@
 ---
-title: "New Site"
+title: "Genomics course collection"
 author: "Wasique Hasan"
 date: "8/31/2020"
 output: html_document
-bibliography: references.bib
+bibliography: data/references.bib
 
 ---
 Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
-###stuff in lab 1\
 
-[Lab 1](https://github.com/wasiquehasan/genomics/blob/master/lab1_wasiquehasan.R)
-![](https://htmlcolorcodes.com/assets/images/html-color-codes-color-palette-generators-7a5b8241.jpg)
+
+stuff in lab 1\
+[Lab 1](https://github.com/wasiquehasan/genomics/blob/master/lab1_wasiquehasan.R)\
+Other labs will be added soon
+
+stuff in lab 2\
+[Lab 2](https://github.com/wasiquehasan/genomics/blob/master/lab2_wasiquehasan.R)\
+
+![](D:\Art\fat appa 1.jpg)
 
 # REFERENCES
