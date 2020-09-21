@@ -3,19 +3,17 @@ title: "Genomics course collection"
 author: "Wasique Hasan"
 date: "8/31/2020"
 output: html_document
-bibliography: data/references.bib
 
 ---
-Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
 
 
-stuff in lab 1\
-[Lab 1](https://github.com/wasiquehasan/genomics/blob/master/lab1_wasiquehasan.R)\
-Other labs will be added soon
 
-stuff in lab 2\
-[Lab 2](https://github.com/wasiquehasan/genomics/blob/master/lab2_wasiquehasan.R)\
+
+[Lab 1](lab1_wasiquehasan.html)\
+[Lab 2](lab2_wasiquehasan.html)\
+[Lab 3A](lab3A_wasiquehasan.html)\
+[Lab 3B](lab3B_wasiquehasan.html)\
+
+
 
 ![](D:\Art\fat appa 1.jpg)
-
-# REFERENCES

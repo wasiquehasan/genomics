@@ -1,0 +1,160 @@
+---
+title: "Lab 3A Starting with the Data"
+author: "Wasique Hasan"
+date: "09/20/2020"
+output: html_document
+chunk_output_type: console
+---
+
+library(knitr)
+library(markdown)
+library("tidyverse")
+
+``` {r, eval = FALSE}
+download.file(url="https://ndownloader.figshare.com/files/2292169",
+destfile = "data/portal_data_joined.csv")
+```
+
+                
+``` {r} 
+surveys <- read.csv("data/portal_data_joined.csv")
+## Start and end
+head(surveys)
+tail(surveys)
+View(surveys)
+
+## Additional information
+dim(surveys)
+nrow(surveys)
+ncol(surveys)
+names(surveys)
+rownames(surveys)
+
+## Summary
+str(surveys)
+summary(surveys)
+```
+
+## Challenge question 1\
+Based on the output of str(surveys), can you answer the following questions?\
+
+What is the class of the object surveys?\
+Answer: The class of surveys is data frame.\
+How many rows and how many columns are in this object?\
+Answer: There are 34786 rows and 13 columns.\
+How many species have been recorded during these surveys?\
+Answer: 48 species.
+
+## Challenge question 2
+Create a data.frame (surveys_200) containing only the data in row 200 of the surveys dataset.\
+
+Notice how nrow() gave you the number of rows in a data.frame?\
+
+Use that number to pull out just that last row in the data frame.\
+Compare that with what you see as the last row using tail() to make sure it’s meeting expectations.\
+Pull out that last row using nrow() instead of the row number.\
+Create a new data frame (surveys_last) from that last row.\
+Use nrow() to extract the row that is in the middle of the data frame.\
+Store the content of this row in an object named surveys_middle.\
+Combine nrow() with the - notation above to reproduce the behavior of head(surveys), keeping just the first through 6th rows of the surveys dataset.\
+```{r}
+surveys_200 <- surveys[1:200, ]
+nrow(surveys_200)
+tail(surveys_200)
+surveys_200[nrow(surveys_200), ]
+surveys_last <- surveys_200[nrow(surveys_200), ]
+surveys_200[nrow(surveys_200)/2, ]
+surveys_middle <-surveys_200[nrow(surveys_200)/2, ]
+surveys_200[-(7:nrow(surveys_200)), ]
+```
+
+```{r}
+sex <- factor(c("male", "female", "female", "male"))
+levels(sex)
+nlevels(sex)
+sex # current order
+sex <- factor(sex, levels = c("male", "female"))
+sex # after re-ordering
+as.character(sex)
+year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
+as.numeric(year_fct)               # Wrong! And there is no warning...
+as.numeric(as.character(year_fct)) # Works...
+as.numeric(levels(year_fct))[year_fct]    # The recommended way.
+## bar plot of the number of females and males captured during the experiment:
+plot(as.factor(surveys$sex))
+```
+
+```{r}
+sex <- factor(surveys$sex)
+head(sex)
+levels(sex)
+levels(sex)[1] <- "undetermined"
+levels(sex)
+head(sex)
+```
+## Challenge question 3
+Rename “F” and “M” to “female” and “male” respectively.
+Now that we have renamed the factor level to “undetermined”, can you recreate the barplot such that “undetermined” is last (after “male”)?
+```{r}
+levels(sex)[2] <- "Female"
+levels(sex)[3] <- "Male"
+sex<- factor(sex, levels=c("Female", "Male", "undetermined"))
+plot(sex)
+```
+
+```{r}
+## Compare the difference between our data read as `factor` vs `character`.
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
+str(surveys)
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
+str(surveys)
+## Convert the column "plot_type" into a factor
+surveys$plot_type <- factor(surveys$plot_type)
+```
+## Challenge question 4
+We have seen how data frames are created when using read.csv(), but they can also be created by hand with the data.frame() function. There are a few mistakes in this hand-crafted data.frame. Can you spot and fix them? Don’t hesitate to experiment!
+
+Corrected version:\
+```{r}
+animal_data <- data.frame(
+          animal = c("dog", "cat", "sea cucumber", "sea urchin"),
+          feel = c("furry", "furry", "squishy", "spiny"),
+          weight = c(45, 8, 1.1, 0.8)
+          )
+```
+
+Can you predict the class for each of the columns in the following example? Check your guesses using str(country_climate):\
+Answer: has_kangaroo is numeric, all the others are factors.
+Are they what you expected? Why? Why not?\
+Answer: Yes, they are what I expected.
+What would have been different if we had added stringsAsFactors = FALSE when creating the data frame?\
+Answer: There would be character vectors instead of factors. 
+What would you need to change to ensure that each column had the accurate data type?\
+Answer: Removing quotes in temperature and northern_hemisphere and replacing the 1 with TRUE in has_kangaroo. 
+```{r}
+country_climate <- data.frame(
+       country = c("Canada", "Panama", "South Africa", "Australia"),
+       climate = c("cold", "hot", "temperate", "hot/temperate"),
+       temperature = c(10, 30, 18, "15"),
+       northern_hemisphere = c(TRUE, TRUE, FALSE, "FALSE"),
+       has_kangaroo = c(FALSE, FALSE, FALSE, 1)
+       )
+str(country_climate)
+```
+
+```{r}
+str(surveys)
+library("lubridate")
+my_date <- ymd("2015-01-01")
+str(my_date)
+# sep indicates the character to use to separate each component
+my_date <- ymd(paste("2015", "1", "1", sep = "-")) 
+str(my_date)
+paste(surveys$year, surveys$month, surveys$day, sep = "-")
+ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
+surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
+str(surveys) 
+summary(surveys$date)
+missing_dates <- surveys[is.na(surveys$date), c("year", "month", "day")]
+head(missing_dates)
+```
